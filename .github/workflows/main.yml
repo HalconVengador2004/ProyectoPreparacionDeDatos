@@ -1,21 +1,21 @@
-name: Clean Notebooks
+name: Check Clean Notebooks
 
 on:
   push:
     branches:
       - main
+      - master
   pull_request:
     branches:
       - main
+      - master
 
 jobs:
-  clean_notebooks:
+  check_clean_notebooks:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    # Ensure that the notebooks are clean
-    - name: Ensure notebooks are clean
-      uses: ResearchSoftwareActions/EnsureCleanNotebooksAction@1.1
-
+      - name: Ensure clean notebooks
+        uses: ResearchSoftwareActions/EnsureCleanNotebooksAction@1.1
