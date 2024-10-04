@@ -1,14 +1,21 @@
-name: EnsureCleanNotebooksAction
+name: Clean Notebooks
 
 on:
-  pull_request:
   push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  pre-commit:
+  clean_notebooks:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v3
-    - uses: pre-commit/action@v3.0.1
-    - uses: ResearchSoftwareActions/EnsureCleanNotebooksAction@1.1
+    - uses: actions/checkout@v2
+
+    # Ensure that the notebooks are clean
+    - name: Ensure notebooks are clean
+      uses: ResearchSoftwareActions/EnsureCleanNotebooksAction@1.1
+
